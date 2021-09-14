@@ -1,0 +1,530 @@
+input {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: textfield;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
+}
+
+button, input {
+    overflow: visible;
+}
+
+input, button, select, optgroup, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+input[type="text" i] {
+    padding: 1px 2px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+	 cursor: default;
+}
+
+.form-control {
+    display: block;
+    width: 97%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-clip: padding-box;
+    border: 1px solid;
+    color: #5c6873;
+    background-color: #fff;
+    border-color: #e4e7ea;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    margin-bottom: 1.5rem;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid;
+    border-radius: .25rem;
+    background-color: #fff;
+    border-color: #d8dbe0;
+}
+.c-app {
+    color: #3c4b64;
+    background-color: #ebedef;
+    --color: #3c4b64;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+.c-app:not(.c-legacy-theme):not(.c-dark-theme) .btn:not([class*=ghost]):not([class*=link]):not([class*=outline]):not([class*=transparent]) {
+    border: 0;
+    box-shadow: 0 1px 1px 0 rgba(60,75,100,.14), 0 2px 1px -1px rgba(60,75,100,.12), 0 1px 3px 0 rgba(60,75,100,.2);
+}
+button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
+    cursor: pointer;
+}
+.btn-block {
+    display: block;
+    width: 50%;
+}
+.btn-info {
+    color: #fff;
+    background-color: #39f;
+    border-color: #39f;
+}
+button {
+    appearance: button;
+    text-rendering: auto;
+    color: -internal-light-dark(buttontext, rgb(170, 170, 170));
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(74, 74, 74));
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
+}
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+button, [type=button], [type=reset], [type=submit] {
+    -webkit-appearance: button;
+}
+button, select {
+    text-transform: none;
+}
+
+
+button {
+    border-radius: 0;
+}
+
+.form-control:focus {
+    color: #5c6873;
+    background-color: #fff;
+    border-color: #8ad4ee;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(50,31,219,.25);
+}
+
+html:not([dir=rtl]) .form-check {
+    padding-left: 1.25rem;
+}
+
+html:not([dir=rtl]) .form-check-input {
+    margin-left: -1.25rem;
+}
+
+.form-check {
+    position: relative;
+    display: block;
+}
+
+.col-form-label {
+    padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+}
+
+input[type="radio" i] {
+    background-color: initial;
+    cursor: default;
+    appearance: radio;
+    box-sizing: border-box;
+    margin: 3px 3px 0px 5px;
+    padding: initial;
+    border: initial;
+}
+
+input[type=radio], input[type=checkbox] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.form-check-input {
+    position: absolute;
+    margin-top: .3rem;
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+input[type="file" i] {
+    appearance: initial;
+    background-color: initial;
+    cursor: default;
+    align-items: baseline;
+    color: inherit;
+    text-align: start !important;
+    padding: initial;
+    border: initial;
+}
+
+.table-bordered {
+    border: 1px solid;
+    border-color: #d8dbe0;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #4f5d73;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table {
+    display: table;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.table-bordered thead th, .table-bordered thead td {
+    border-bottom-width: 2px;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid;
+    border-bottom-color: #d8dbe0;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid;
+    border-color: #d8dbe0;
+}
+
+.table th, .table td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid;
+    border-top-color: #d8dbe0;
+}
+
+.content-form{
+    border: solid 1px black;
+}
+#horario{
+    white-space: pre-line;
+}
+
+.form-group{
+    top:0px;
+    margin:0px;
+}
+.form-title{
+    padding: 2px;
+}
+
+#grupo2{
+    top:0px;
+    padding: 0px;
+}
+
+.form-title {
+    margin:0px;
+}
+
+
+
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+.text-value-lg {
+    font-size: 1.3125rem;
+}
+[class^=text-value] {
+    font-weight: 600;
+}
+
+.mb-2, .my-2 {
+    margin-bottom: .5rem!important;
+}
+.mt-2, .my-2 {
+    margin-top: .5rem!important;
+}
+.progress-xs {
+    height: 4px;
+}
+.progress {
+    display: -ms-flexbox;
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: .65625rem;
+    border-radius: .25rem;
+    background-color: #ebedef;
+}
+
+.bg-gradient-info {
+    background: #2982cc!important;
+    background: linear-gradient(45deg,#39f 0%,#2982cc 100%)!important;
+    border-color: #2982cc!important;
+}
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    transition: width .6s ease;
+    color: #fff;
+    background-color: #321fdb;
+}
+
+.text-muted {
+    color: #768192!important;
+}
+small, .small {
+    font-size: 80%;
+    font-weight: 400;
+}
+small {
+    font-size: 80%;
+}
+
+.widgets{
+    width: 260px;
+    float: left;
+    margin-right: 20px;
+}
+
+/* Link botones*/
+a.nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #39f !important;
+    border-radius: 3px;
+    text-decoration: none;
+}
+.nav-pills .nav-link {
+    border-radius: .25rem;
+}
+.nav-link {
+    display: block;
+    padding: 0.3rem 0.5rem;
+}
+a {
+    text-decoration: none;
+    background-color: transparent;
+    color: #3C4B64;
+}
+
+.btn-success{
+    
+        color:#fff;
+        background-color: #39f;
+        border-color:#39f;
+    
+}
+/*Notificacion*/
+html:not([dir=rtl]) .badge, html:not([dir=rtl])  .badge {
+    left: 71%;
+    margin-left: 0;
+}
+
+.badge {
+    position: absolute;
+    top: 5%;
+    margin-top: -11px;
+}
+.badge-info {
+    color: #fff;
+    background-color: #39f;
+}
+.badge-pill {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+}
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 50%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+/*Calendario*/
+.month {
+    padding: 30px 36px;
+    width: 100%;
+    background: #3C4B64;
+    text-align: center;
+  }
+  
+  .month ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  
+  .month .prev {
+    float: left;
+    padding-top: 10px;
+  }
+  
+  .month .next {
+    float: right;
+    padding-top: 10px;
+  }
+  
+  .weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #ddd;
+  }
+  
+  .weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+  }
+  
+  .days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+  }
+  
+  .days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #777;
+  }
+  
+  .days li .active {
+    padding: 5px;
+    background: #3C4B64;
+    color: white !important
+  }
+  
+  /* Add media queries for smaller screens */
+  @media screen and (max-width:720px) {
+    .weekdays li, .days li {width: 13.1%;}
+  }
+  
+  @media screen and (max-width: 420px) {
+    .weekdays li, .days li {width: 12.5%;}
+    .days li .active {padding: 2px;}
+  }
+  
+  @media screen and (max-width: 290px) {
+    .weekdays li, .days li {width: 12.2%;}
+  }
+/* textArea*/
+  textarea {
+    overflow: auto;
+    resize: vertical;
+}/*Consultar informacion analista*/
+#consultar{
+    width: 100px;
+}
+td{
+    text-align: center;
+}
+th{
+    font-size: medium;
+}
+/*Calendario Analista*/
+button{
+    margin-right: 500px;
+}
+
+.input-error{
+    border: 1px solid #dd5144;
+}
+

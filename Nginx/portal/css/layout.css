@@ -1,0 +1,413 @@
+/*Css template genaral*/
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    height: 100%;
+   }
+
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    color: #3c4b64;
+    background-color: #ebedef;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+    margin:0px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    height: 100%;
+}
+
+.menu{
+    background-color: #3C4B64;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 100px [main-start] 100px [main-end] 100px;
+}
+
+/*Css del menu*/
+.logo{
+    width: 196px;
+    padding-left: 11px;
+    padding-right: 31px;
+}
+
+ul.acorh, ul.acorh * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+ul.acorh {
+    margin: 10px auto;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+ul.acorh li {
+    list-style: none;
+}
+
+ul.acorh li a {
+    display: block;
+    padding: 10px 10px 10px 10px;
+    background:#3C4B64;
+    color: #eee;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+ul.acorh li ul {
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    transition: .3s all ease-in;
+}
+
+ul.acorh li li a {
+    padding: 10px 10px 10px 10px;
+    background: #3C4B64;
+    color: #ffffff;
+    border: 0;
+    box-sizing: border-box;
+}
+
+ul.acorc li li:last-child a {
+    border-bottom: 0;
+}
+
+ul.acorh li:hover ul {
+    max-height: 300px;
+    transition: .3s all ease-in;
+}
+
+ul.acorh li a:hover {
+    background:  #008ece;
+    color: #fff;
+}
+
+ul.acorh li:target ul {
+    max-height: 300px;
+    transition: .3s all ease-in;
+}
+
+/*Css del contenido*/
+.content{
+    display: grid;
+    grid-template-rows: 50px 11fr;
+    row-gap: 40px;
+}
+.content-form{
+    display: grid;
+    grid-template-rows: 38px 11fr;
+    width: 95%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    row-gap: 1em;
+}
+.content-option{
+    background-color: #ffffff;
+    min-height:70px ;
+}
+.form-title{
+    border-bottom: 1px solid #d8dbe0;
+    font-weight: 400;
+    margin-bottom: 40px;
+    font-size: 21px;
+}
+
+
+
+#menu a {
+    text-decoration: none;
+    margin-right: 3rem;
+    color: black;
+}
+
+ul#menu li{
+    display:block;
+    float:left;
+    
+}
+
+nav{
+    float: right;
+    padding-right: 3rem;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Segoe UI";
+    
+}
+
+
+
+.icono{
+    width: 116px;
+    padding-top: 13px;
+    padding-left: 43px;
+
+}
+#fondo{
+    background-image:url("../img2/fondo.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin:0px;
+}
+
+.linkMenu{
+    padding-top: 20px;
+    
+}
+
+.header{
+    width: 100%;
+    height: 100px;
+    background-color: #f2f4f7;
+
+}
+
+.textoPrincipal{
+    width: 30%;
+    position: absolute;
+    top: 72%;
+    left: 13%;
+    transform: translate(-21%, -92%);
+    font-family:"Segoe UI";
+    font-size: 52px;
+    color: black;
+    text-shadow: gray 5px 5px 5px;
+}
+
+.boton{
+    text-decoration: none;
+    padding: 13px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #ffffff;
+    background-color: #20B3AD;
+    border-radius: 6px;
+    margin-top: 393px;
+    width: 133px;
+    margin-left: 286px;
+    text-align: center;
+    border: solid;
+}
+
+.titulo1{
+
+    background-color: #f2f4f7;
+    padding-top: 3%;
+    text-align: center;
+    padding-bottom: 3%;
+    font-family: "Segoe UI";
+    font-size: 47px;
+
+}
+
+.img2{
+    width: 63%;
+    padding-top: 30px;
+    padding-left: 99px;
+}
+
+.contenido{
+    font-family: "Segoe UI"; 
+    text-align: center;
+}
+
+.texto{
+    text-align: justify;
+    padding-right: 129px;
+
+}
+
+.titulo{
+    background-color:  #20B3AD; ;
+    color: white;
+    font-family: "Segoe UI";
+    font-weight: 0%;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+}
+
+#imagen{
+    width:70%;
+    padding-top: 35px;
+   
+}
+
+.containerImg{
+    text-align: center;
+    margin-top: 2%;
+}
+.boton2{
+text-decoration: none;
+padding: 13px;
+font-size: 20px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+color: #ffffff;
+background-color: #20B3AD;
+border-radius: 6px;
+width: 133px;
+margin-left: 1145px;
+text-align: center;
+border: solid;
+}
+
+.servicios{
+  display: grid; 
+  grid-template-rows:repeat(4, auto);
+  min-height: 500px;
+  row-gap: 1em;
+
+}
+
+
+
+#hoteles-card{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1em;
+   
+    
+    
+}
+
+.card {
+    display: grid;
+    grid-template-rows: 1fr 100px;
+    border: #BFC0C1 solid 1px;
+    
+    
+}
+
+.card-header img{
+    width: 100%;
+    height: 100%;
+}
+
+h1{
+    
+    font-family: "Segoe UI";
+    font-weight: 500;
+    text-align: center;
+}
+
+.card-body{
+    background-color:#f2f4f7 ;
+   
+}
+
+h4{
+    text-align: center;
+    font-family: "Segoe UI";
+    font-weight: 200;
+}
+
+#transporte-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: #BFC0C1 solid 1px;
+    column-gap: 2em;
+    background-color:#f2f4f7 ;
+   
+    
+    
+
+}
+
+.imagen{
+    width: 100%;
+    height: 100%; 
+    
+    
+}
+
+p{
+    font-family: "Segoe UI";
+    text-align: justify;
+}
+
+#fondoimg{
+    background-image: url("../img2/viaje/viaje1.jpg");
+    min-height: 600px;
+    
+}
+
+#formulario{
+    display: grid;
+    grid-template-rows: 100px 100px;
+    width: 60%;
+    margin: auto;
+    padding-top: 13%;
+
+}
+
+.frase{
+    font-size: 60px;
+    color: white;
+    font-family: "Segoe UI";
+    text-align: center;
+    background-color: black;
+    opacity: 0.6;
+    font-weight: 400;
+    
+}
+
+.espacio{
+    background-color: #ffffff;
+    font-family: "Segoe UI";
+    font-size:16px;
+    margin:0 auto;
+    padding-left: 10px;
+
+}
+
+input[type=radio]{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input[type=date]{
+    font-family: "Segoe UI";
+    text-transform: uppercase;
+    margin:0px auto;
+}
+
+input[type=button]{
+    font-family: "Segoe UI";
+    background-color:#20B3AD ;
+    color: cornsilk;
+    border: 0px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    width: 100px;
+    margin-top: 10px;
+}
+
+
+
+
+
+

@@ -1,0 +1,206 @@
+version: "3"
+
+#############################################
+### Volumenes para guardado de informacion###
+#############################################
+volumes:
+    arq_service_data:
+
+#############################################
+### Red de comunicacion para los servicios###
+#############################################
+networks: 
+    arq_service_net:
+
+#############################################
+### Declaracion de los servicios          ###
+#############################################
+services:
+    
+#############################################
+###        Servidor Web                   ###
+#############################################
+    arq-service-nginx:
+        image: nginx:latest
+        container_name: arq-service-nginx
+        restart: always
+        networks:
+            - arq_service_net
+        volumes:
+            - ./Nginx/cfg/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./Nginx/cert/:/etc/cert/
+            - ./Nginx/portal/:/usr/share/nginx/html:ro 
+        ports:
+            - 80:80
+            - 443:443
+            
+#############################################
+### Servicio de bases de datos            ###
+#############################################
+    arq-service-database:
+        build:
+            context: ./Postgres/ 
+        image: arq-service-postgres:1.0
+        restart: always
+        networks: 
+            - arq_service_net
+        container_name: arq-service-database
+        volumes:
+            - arq_service_data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_MULTIPLE_DATABASES: "kong,konga,keycloak"
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        ports:
+            - "5432:5432"    
+        healthcheck:
+            test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
+            interval: 10s
+            timeout: 5s
+            retries: 5   
+            
+#############################################
+### Key cloack service                    ###
+#############################################
+    arq-service-keycloak:
+        container_name: arq-service-keycloak
+        image: jboss/keycloak:10.0.2
+        depends_on:
+            - arq-service-database
+        networks:
+            - arq_service_net
+        ports:
+            - "8080:8080"
+        environment:
+            DB_VENDOR:   POSTGRES
+            DB_ADDR:     arq-service-database
+            DB_PORT:     5432
+            DB_DATABASE: ${KEYCLOACK_PG_DATABASE}
+            DB_USER:     ${POSTGRES_USER}
+            DB_PASSWORD: ${POSTGRES_PASSWORD}
+            KEYCLOAK_USER:     ${POSTGRES_USER}
+            KEYCLOAK_PASSWORD: ${POSTGRES_PASSWORD}
+            PROXY_ADDRESS_FORWARDING: "true"
+            #KEYCLOAK_FRONTEND_URL: ${KEYCLOAK_FRONTEND_URL}            
+
+#############################################
+### Migracion de base de datos kong       ###
+#############################################
+    arq-service-kong-migration:
+        image: kong:2.4.1-alpine
+        depends_on:
+            - "arq-service-database"
+        container_name: arq-service-kong-migration
+        networks:
+            - arq_service_net
+        restart: on-failure
+        environment:
+            - KONG_DATABASE=postgres
+            - KONG_PG_HOST=arq-service-database
+            - KONG_PG_DATABASE=${KONG_PG_DATABASE}
+            - KONG_PG_USER=${POSTGRES_USER}
+            - KONG_PG_PASSWORD=${POSTGRES_PASSWORD}
+        command: kong migrations bootstrap
+
+#############################################
+### Migracion de base de datos konga      ###
+#############################################        
+    arq-service-konga-migration:
+        image: pantsel/konga:latest
+        container_name: arq-service-konga-migration
+        environment:
+            - DB_PASSWORD=${POSTGRES_PASSWORD}
+        command: "-c prepare -a postgres -u postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@arq-service-database:5432/${KONGA_PG_DATABASE}"
+        networks:
+            - arq_service_net
+        restart: on-failure
+        depends_on: 
+            - arq-service-database        
+
+#############################################
+### Kong Api gateway                      ###
+#############################################
+    arq-service-kong:
+        container_name: arq-service-kong
+        restart: always
+        build:
+            context: ./Kong/      
+        image: cmc-kong-oidc:1.0
+        depends_on:
+            - arq-service-database
+            - arq-service-konga-migration
+        networks:
+            - arq_service_net
+        ports:
+            - "8000:8000" # Listener
+            - "8001:8001" # Admin API
+            - "8443:8443" # Listener  (SSL)
+            - "8444:8444" # Admin API (SSL)
+        environment:
+            KONG_DATABASE: postgres
+            KONG_PG_HOST: arq-service-database
+            KONG_PG_PORT: 5432
+            KONG_PG_DATABASE: ${KONG_PG_DATABASE}
+            KONG_PG_USER: ${POSTGRES_USER}
+            KONG_PG_PASSWORD: ${POSTGRES_PASSWORD}
+            KONG_PROXY_ACCESS_LOG: /dev/stdout
+            KONG_ADMIN_ACCESS_LOG: /dev/stdout
+            KONG_PROXY_ERROR_LOG:  /dev/stderr
+            KONG_ADMIN_ERROR_LOG:  /dev/stderr
+            KONG_PROXY_LISTEN:     0.0.0.0:8000, 0.0.0.0:8443 ssl
+            KONG_ADMIN_LISTEN:     0.0.0.0:8001, 0.0.0.0:8444 ssl
+            KONG_PLUGINS:          bundled,oidc
+            KONG_LOG_LEVEL:        debug
+
+#############################################
+### Konga admin Api gateway               ###
+#############################################
+    arq-service-konga:
+        container_name: arq-service-konga
+        image: pantsel/konga:0.14.7
+        restart: always
+        depends_on:
+            - arq-service-database
+            - arq-service-konga-migration
+        networks:
+            - arq_service_net
+        ports:
+            - "1337:1337" 
+        environment:
+            DB_ADAPTER: postgres
+            DB_HOST: arq-service-database
+            DB_PORT: '5432'
+            DB_USER: ${POSTGRES_USER}
+            DB_PASSWORD: ${POSTGRES_PASSWORD}
+            DB_DATABASE: ${KONGA_PG_DATABASE}
+            NODE_ENV: development 
+
+#############################################
+### Metricas prometheus                   ###
+#############################################
+    arq-service-prometheus:
+        image: prom/prometheus
+        container_name: arq-service-prometheus
+        restart: always
+        networks:
+            - arq_service_net
+        volumes: 
+            - ./Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+        command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+        ports: 
+            - 9090:9090
+
+#############################################
+### Metricas grafana                      ###
+#############################################
+    arq-service-grafana:
+        image: grafana/grafana
+        container_name: arq-service-grafana
+        restart: always
+        networks:
+        - arq_service_net
+        volumes: 
+        - ./Grafana/provisioning/:/etc/grafana/provisioning
+        ports:
+        - 3000:3000            
+            
